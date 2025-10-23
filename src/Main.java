@@ -3,12 +3,18 @@
 
 public class Main {
     public static void main(String[] args) {
-        //создать экземпляр класса
-        Farm animalName1 = new Farm();
-        animalName1.displayPublicInfo();
+        //создаем объект Car
+        Car car = new Car("Nissan", 2025);
+
+        //создать несколько экземпляров класса Car
+        Car car1 = new Car("BMV", 2016);
+        Car car2 = new Car("Lada Vesta", 2020);
+        Car car3 = new Car("Opel", 2017);
         //переопределить переменные
-        animalName1.animalName = "Cow";
-        animalName1.animalCount = 5;
-        animalName1.displayPublicInfo();
+        car2.model = "Lada Priora";
+        car2.year = 2021;
+        //вывести результат метода BeBe
+
+        car2.Bebe();
     }
 }
