@@ -5,23 +5,53 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-// Создать массив из 3-х строк (привет, ПОКА, гипербола)
-        String[] words = {"привет", "ПОКА", "гипербола"};
 
-// Вывести в консоль первую строку из массива
-        String firstWords = words[0];
-        String secondWords = words[1];
-        String thirdWords = words[2];
-// Вывести в консоль первую строку из массива в верхнем регистре
-        String upperCaseFirstWords = firstWords.toUpperCase();
-        System.out.println(upperCaseFirstWords);
+        //Создайте класс Employee с полями name и salary. Добавьте метод work(), который выводит сообщение о работе сотрудника.
 
-// Вывести вторую строку из массива в нижнем регистре
-        String lowerCaseSecondWords = secondWords.toLowerCase();
-        System.out.println(lowerCaseSecondWords);
+        class Employee {
+            protected String name;
+            protected int salary;
 
-        // Вывести третью строку, в которой вторая буква будет "О" и между второй и третьей буквой поставить «пробел»
-        System.out.println(thirdWords.replace("и", "О "));
+            public Employee(String name, int salary) {
+                this.name = name;
+                this.salary = salary;
+            }
+
+            public void work() {
+                System.out.println(name + " работает аналитиком c окладом:" + salary + " руб.");
+            }
+        }
+        //Создайте подклассы Manager и Developer, которые наследуют от Employee. Добавьте метод work(), который выводит сообщение о работе сотрудника.
+
+        class Manager extends Employee {
+            public Manager(String name, int salary) {
+                super(name, salary);
+            }
+
+            @Override
+            public void work() {
+                System.out.println(name + " руководит командой аналитиков и часто пьет кофе и получает зарплату:" + salary + " руб.");
+            }
+        }
+        class Developer extends Employee {
+            public Developer(String name, int salary) {
+                super(name, salary);
+            }
+
+            @Override
+            public void work() {
+                System.out.println(name + " очень редко общается с командой аналитиков и поэтому часто ошибается при написании кода, но получает зарплату в размере:" + salary + " руб.");
+            }
+        }
+        {
+                Employee employee = new Employee("Елена", 94700);
+                Manager manager = new Manager("Андрей", 135687);
+                Developer developer = new Developer("Артур", 142523);
+
+                employee.work();
+                manager.work();
+                developer.work();
+            }
+        }
     }
-}
 
