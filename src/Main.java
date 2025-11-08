@@ -11,30 +11,52 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //Создайте абстрактный класс Shape с абстрактным методом draw().
-         abstract class Shape {
-            public abstract void draw();
+        //Создать класс с данными, который имеет вложенный класс Enum, в котором указано количество струн
+
+        class Instrument {
+
+            // Вложенный Enum, в котором указано количество струн
+            enum StringType {
+                GUITAR(6),
+                PIANO(0);
+
+                private final int numberOfStrings;
+
+                StringType(int numberOfStrings) {
+                    this.numberOfStrings = numberOfStrings;
+                }
+
+                public int getNumberOfStrings() {
+                    return numberOfStrings;
+                }
+            }
         }
 
-        // Создайте подклассы Circle и Rectangle, которые реализуют метод draw().
-         class Circle extends Shape {
+        //Создать интерфейс Playable с методом play(), который принимает количество струн
+        interface Playable {
+            void play(int numberOfStrings);
+        }
+        //Реализуйте этот интерфейс в классах Guitar и Piano.
+        class Guitar extends Instrument implements Playable {
             @Override
-            public void draw() {
-                System.out.println("Нарисовать круг");
+            public void play(int numberOfStrings) {
+                System.out.println("При игре на гитаре используется " + numberOfStrings + " струн");
             }
         }
-         class Rectangle extends Shape {
+
+        class Piano extends Instrument implements Playable {
             @Override
-            public void draw() {
-                System.out.println("Нарисовать прямоугольник");
+            public void play(int numberOfStrings) {
+                System.out.println("При игре на пианино используются клавиши, потому что у пианино " + numberOfStrings + " струн");
             }
         }
-        // В методе draw() выведите сообщение о том, что фигура рисуется.
-        Shape Circle1 = new Circle();
-        Shape Rectangle1 = new Rectangle();
-        Circle1.draw();
-        Rectangle1.draw();
+        {
+            Guitar guitar = new Guitar();
+            Piano piano = new Piano();
+
+            // Количество струн должно передаваться из вложенного класса Enum
+            guitar.play(Instrument.StringType.GUITAR.getNumberOfStrings());
+            piano.play(Instrument.StringType.PIANO.getNumberOfStrings());
+        }
     }
 }
-
-
