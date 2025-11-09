@@ -7,56 +7,18 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Scanner;
+import java.util.Random;
 
-public class Main {
+ public class Main {
     public static void main(String[] args) {
 
-        //Создать класс с данными, который имеет вложенный класс Enum, в котором указано количество струн
+//создаем массив из трех строк
+        String[] myFamily = {"Брат", "Сестра", "Ребенок"};
+        Random random = new Random();
 
-        class Instrument {
-
-            // Вложенный Enum, в котором указано количество струн
-            enum StringType {
-                GUITAR(6),
-                PIANO(0);
-
-                private final int numberOfStrings;
-
-                StringType(int numberOfStrings) {
-                    this.numberOfStrings = numberOfStrings;
-                }
-
-                public int getNumberOfStrings() {
-                    return numberOfStrings;
-                }
-            }
-        }
-
-        //Создать интерфейс Playable с методом play(), который принимает количество струн
-        interface Playable {
-            void play(int numberOfStrings);
-        }
-        //Реализуйте этот интерфейс в классах Guitar и Piano.
-        class Guitar extends Instrument implements Playable {
-            @Override
-            public void play(int numberOfStrings) {
-                System.out.println("При игре на гитаре используется " + numberOfStrings + " струн");
-            }
-        }
-
-        class Piano extends Instrument implements Playable {
-            @Override
-            public void play(int numberOfStrings) {
-                System.out.println("При игре на пианино используются клавиши, потому что у пианино " + numberOfStrings + " струн");
-            }
-        }
-        {
-            Guitar guitar = new Guitar();
-            Piano piano = new Piano();
-
-            // Количество струн должно передаваться из вложенного класса Enum
-            guitar.play(Instrument.StringType.GUITAR.getNumberOfStrings());
-            piano.play(Instrument.StringType.PIANO.getNumberOfStrings());
+//Добавить генерацию случайного числа от 0 до 2 (включительно)
+            int randomIndex = random.nextInt(3);
+//выводим случайным образом строку
+            System.out.println(myFamily[randomIndex]);
         }
     }
-}
